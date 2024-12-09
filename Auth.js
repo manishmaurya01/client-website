@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -24,8 +24,7 @@ const loginForm = document.getElementById("login-form");
 const signupForm = document.getElementById("signup-form");
 const loginTab = document.getElementById("login-tab");
 const signupTab = document.getElementById("signup-tab");
-const signupButton = document.querySelector("#signup-form .btn-primary");
-const loginButton = document.querySelector("#login-form .btn-primary");
+const googleLoginBtn = document.getElementById("google-login-btn");
 
 // Check if the user is already logged in and redirect them to the index page
 onAuthStateChanged(auth, (user) => {
@@ -62,6 +61,76 @@ passwordToggles.forEach(toggle => {
     toggle.textContent = isPasswordVisible ? "👁️" : "🙈";
   });
 });
+
+// Google Login
+const provider = new GoogleAuthProvider();
+
+googleLoginBtn.addEventListener("click", () => {
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      const user = result.user;
+      // alert("Google login successful! Welcome, " + user.displayName);
+
+      // Store user details in localStorage
+      localStorage.setItem('user', JSON.stringify({
+        email: user.email,
+        uid: user.uid,
+        displayName: user.displayName,
+        role: "student" // Default role, you can modify this logic as per your need
+      }));
+
+      // Redirect to index.html after Google login
+      window.location.href = "index.html"; // Redirect to the home page
+    })
+    .catch((error) => {
+      const errorMessage = error.message;
+      alert("Error during Google login: " + errorMessage);
+    });
+});
+signOut(auth).then(() => {
+  console.log('User signed out.');
+  window.location.href = "auth.html"; // Redirect to the auth page after sign-out
+}).catch((error) => {
+  const errorMessage = error.message;
+  alert("Error during sign out: " + errorMessage);
+});
+
+googleLoginBtn.addEventListener("click", () => {
+  signInWithRedirect(auth, provider);
+});
+
+// After the redirect, handle the result:
+getRedirectResult(auth)
+  .then((result) => {
+    if (result) {
+      const user = result.user;
+      // Store user details in localStorage
+      localStorage.setItem('user', JSON.stringify({
+        email: user.email,
+        uid: user.uid,
+        displayName: user.displayName,
+        role: "student" // Default role
+      }));
+
+      // Redirect to index.html after Google login
+      window.location.href = "index.html"; // Redirect to the home page
+    }
+  })
+  .catch((error) => {
+    const errorMessage = error.message;
+    alert("Error during Google login: " + errorMessage);
+  });
+
+  // Check if the user is already logged in
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is already signed in, you can handle this case by redirecting to the home page
+    window.location.href = "index.html";
+  }
+});
+
+
+// Sign-up logic (remains the same)
 signupButton.addEventListener("click", (event) => {
   const email = document.getElementById("signup-email").value;
   const password = document.getElementById("signup-password").value;
@@ -76,7 +145,7 @@ signupButton.addEventListener("click", (event) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      alert("Sign-up successful! Welcome, " + user.email);
+      // alert("Sign-up successful! Welcome, " + user.email);
 
       // Store user details in localStorage
       localStorage.setItem('user', JSON.stringify({
@@ -96,10 +165,9 @@ signupButton.addEventListener("click", (event) => {
       // Inform the user in a more detailed manner
       alert("Error during sign-up: " + errorMessage);
     });
-
 });
 
-// Login Logic
+// Login logic (remains the same)
 loginButton.addEventListener("click", (event) => {
   event.preventDefault();
 
@@ -109,7 +177,7 @@ loginButton.addEventListener("click", (event) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      alert("Login successful! Welcome, " + user.email);
+      // alert("Login successful! Welcome, " + user.email);
 
       // Store user details in localStorage
       localStorage.setItem('user', JSON.stringify({
@@ -126,16 +194,6 @@ loginButton.addEventListener("click", (event) => {
       alert("Error during login: " + errorMessage);
     });
 });
-
-// To access the user data anywhere in the project
-const user = JSON.parse(localStorage.getItem('user'));
-
-if (user) {
-  console.log("Logged in user: ", user.email);
-  // You can use user.email, user.uid, or user.role here
-} else {
-  console.log("No user is logged in");
-}
 
 // To log out and clear user data from localStorage
 function logout() {

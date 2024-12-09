@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,10 @@
   <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
   <script src="Auth.js" type="module" defer></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
 </head>
+
 <body>
   <div class="auth-page">
     <div class="auth-card">
@@ -32,6 +36,12 @@
               <option value="student">Login as Student</option>
               <option value="faculty">Login as Faculty</option>
             </select>
+         <!-- Add this inside your login form (within the .auth-forms div) -->
+         <button type="button" id="google-login-btn" class="btn-primary">
+          <i class="fab fa-google" style="font-size: 20px; margin-right: 10px;"></i> Sign in with Google
+        </button>
+        &nbsp;
+
             <button type="submit" class="btn-primary">Log In</button>
           </form>
         </div>
@@ -45,15 +55,16 @@
             <div class="password-container">
               <input type="password" id="signup-password" placeholder="Create Password" required>
               <button type="button" class="password-toggle">👁️</button>
-            </div> 
+            </div>
             <div class="password-container">
               <input type="password" id="confirm-password" placeholder="Confirm Password" required>
               <button type="button" class="password-toggle">👁️</button>
-            </div>            
+            </div>
             <select id="signup-role">
               <option value="student">Sign up as Student</option>
               <option value="faculty">Sign up as Faculty</option>
             </select>
+
             <button type="submit" class="btn-primary">Sign Up</button>
           </form>
         </div>
@@ -61,4 +72,5 @@
     </div>
   </div>
 </body>
+
 </html>
