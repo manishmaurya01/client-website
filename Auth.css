@@ -1,0 +1,208 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff7eb3, #8d50f4);
+    color: #fff;
+}
+
+/* Main Page Wrapper */
+.auth-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Auth Card Styling */
+.auth-card {
+    background: #fff;
+    color: #333;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-width: 450px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Tabs for Login/Sign Up */
+.auth-toggle {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.auth-toggle button {
+    width: 50%;
+    padding: 0.8rem 1rem;
+    border: none;
+    background: transparent;
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+}
+
+.auth-toggle button.active {
+    color: #8d50f4;
+    border-bottom: 3px solid #8d50f4;
+}
+
+/* Forms */
+.auth-forms {
+    transition: all 0.5s ease;
+}
+
+.auth-form {
+    display: none;
+    animation: fadeIn 0.5s forwards;
+}
+
+.auth-form h2 {
+    color: #8d50f4;
+    margin-bottom: 1rem;
+}
+
+.auth-form p {
+    margin-bottom: 2rem;
+}
+
+/* Form Inputs */
+.auth-form input,
+.auth-form select {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 30px;
+    outline: none;
+    font-size: 1rem;
+}
+
+.auth-form input:focus,
+.auth-form select:focus {
+    border-color: #8d50f4;
+}
+
+/* Submit Button */
+.auth-form .btn-primary {
+    background: #8d50f4;
+    color: white;
+    padding: 0.8rem 1rem;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.auth-form .btn-primary:hover {
+    background: #ff7eb3;
+}
+
+/* Display Control */
+#login-form.active,
+#signup-form.active {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Password Container */
+.password-container {
+    position: relative;
+  }
+  
+  .password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 35%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #8d50f4;
+  }
+  
+  .password-toggle:hover {
+    color: #ff7eb3;
+  }
+  
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .auth-card {
+        padding: 1.5rem;
+    }
+
+    .auth-toggle {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .auth-toggle button {
+        width: 100%;
+    }
+
+    .auth-form input,
+    .auth-form select {
+        padding: 0.9rem;
+    }
+
+    .auth-form .btn-primary {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+
+    .auth-card {
+        padding: 1rem;
+    }
+
+    .auth-toggle button {
+        font-size: 1rem;
+        padding: 0.6rem;
+    }
+
+    .auth-form input,
+    .auth-form select {
+        font-size: 0.9rem;
+    }
+
+    .auth-form .btn-primary {
+        font-size: 0.9rem;
+    }
+}

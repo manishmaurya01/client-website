@@ -1,0 +1,674 @@
+/* Root Variables */
+:root {
+    --primary-color: #4caf50;
+    --primary-dark: #3c8d40;
+    --secondary-color: #e0e0e0;
+    --text-color: #333;
+    --light-background: #f9f9f9;
+    --dark-background: #333;
+    --gray-text: #555;
+    --border-radius: 5px;
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --shadow-dark: rgba(0, 0, 0, 0.2);
+    --button-hover: #e0e0e0;
+    --button-hover-dark: #3c8d40;
+    --card-background: #f9f9f9;
+    --card-hover-background: #f0f0f0;
+  }
+  
+  /* General Styles */
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+  }
+  
+  body {
+      /* line-height: 1.6; */
+      color: var(--text-color);
+      background-color: var(--light-background);
+      overflow-x: hidden;
+  }
+
+  
+  /* Utility Classes */
+  .container {
+      width: 90%;
+      /* max-width: 1200px; */
+      margin: 0 auto;
+  }
+  
+  .navbar {
+      background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+      color: white;
+      padding: 0.5rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 6px var(--shadow-light);
+  }
+  
+  .nav_container {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+  }
+  
+  .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-right: auto;
+  }
+  
+  .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+  }
+  
+  .nav-links .link {
+      color: white;
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: var(--border-radius);
+      transition: background 0.3s, color 0.3s;
+  }
+  
+  .nav-links .link:hover {
+      background: white;
+      color: var(--primary-color);
+  }
+  
+  .btn-login{
+      background: white;
+      color: var(--primary-color);
+      border: none;
+      padding: 0.4rem 1rem;
+      cursor: pointer;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+  }
+  .signupbtn{
+    color: var(--primary-color);
+    text-decoration: unset;
+  }
+  #logout-btn{
+    background: white;
+    color: var(--primary-color);
+    border: none;
+    padding: 0.4rem 1rem;
+    cursor: pointer;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+  }
+  #logout-btn:hover{
+    background: var(--button-hover);
+      color: var(--primary-dark);
+  }
+
+ 
+  .btn-login:hover {
+      background: var(--button-hover);
+      color: var(--primary-dark);
+  }
+  
+ 
+  
+  /* Hero Section */
+  .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4rem 0;
+      background: linear-gradient(90deg, var(--light-background), #e9f9e8);
+      min-height: 80vh;
+  }
+  
+  .hero_container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      
+  }
+
+
+  .hero-content {
+      width: 50%;
+      animation: fadeIn 1.5s ease-in-out;
+      padding-left: 20px;
+  }
+  
+  .hero-content h2 {
+      font-size: 3rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+  }
+  
+  .hero-content p {
+      font-size: 1.2rem;
+      color: var(--gray-text);
+      margin-bottom: 2rem;
+  }
+  
+  .btn-primary {
+      background: var(--primary-color);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      text-decoration: none;
+      transition: background 0.3s;
+  }
+  
+  .btn-primary:hover {
+      background: var(--primary-dark);
+  }
+  .hero-image{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .hero-image img {
+      max-width: 50%;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px var(--shadow-dark);
+      animation: zoomIn 1.5s ease-in-out;
+  }
+  
+
+
+
+  @media (max-width: 768px) { 
+    .hero_container{
+        flex-direction: column;
+        width: 100%;
+    }
+    .hero-content {
+        width: 100%;
+    }
+    .hero-image{
+        width: 100%;
+    }
+  }
+
+  
+  /* Featured Courses */
+  .featured-courses {
+      background: #fff;
+      padding: 4rem 0;
+  }
+  
+  .featured-courses h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 2rem;
+      font-weight: bold;
+  }
+  
+  .course-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+  }
+  
+  .course-card {
+      background: var(--card-background);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px var(--shadow-light);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .course-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px var(--shadow-dark);
+  }
+  
+  .course-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+  }
+  
+  .course-card h3 {
+      font-size: 1.4rem;
+      margin: 1rem 0 0.5rem;
+      color: var(--text-color);
+      text-align: center;
+  }
+  
+  .course-card p {
+      text-align: center;
+      color: var(--gray-text);
+      margin: 0 1rem 1rem;
+  }
+  
+  .btn-secondary {
+      background: var(--primary-color);
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      margin: 0 auto 1rem;
+      display: block;
+      width: fit-content;
+      cursor: pointer;
+      transition: background 0.3s;
+  }
+  
+  .btn-secondary:hover {
+      background: var(--primary-dark);
+  }
+  
+  /* Footer */
+  footer {
+      background: var(--dark-background);
+      color: white;
+      text-align: center;
+      padding: 1.5rem 0;
+      font-size: 0.9rem;
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+      0% {
+          opacity: 0;
+          transform: translateY(20px);
+      }
+      100% {
+          opacity: 1;
+          transform: translateY(0);
+      }
+  }
+  
+  @keyframes zoomIn {
+      0% {
+          transform: scale(0.9);
+          opacity: 0;
+      }
+      100% {
+          transform: scale(1);
+          opacity: 1;
+      }
+  }
+  
+  /* Why Choose Us Section */
+  .why-choose-us {
+      background-color: #ffffff;
+      padding: 80px 20px;
+      text-align: center;
+  }
+  
+  .why-choose-us h2 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 40px;
+      letter-spacing: 1px;
+  }
+  
+  .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      justify-items: center;
+  }
+  
+  .feature-card {
+      background-color: #f7f7f7;
+      border-radius: 10px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .feature-card h3 {
+      font-size: 1.6rem;
+      color: #34495e;
+      margin-bottom: 15px;
+  }
+  
+  .feature-card p {
+      font-size: 1rem;
+      color: #7f8c8d;
+      line-height: 1.6;
+  }
+  
+  .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Testimonials Section */
+  .testimonials {
+      background-color: #ecf0f1;
+      padding: 80px 20px;
+  }
+  
+  .testimonials h2 {
+      font-size: 2.5rem;
+      color: #2c3e50;
+      margin-bottom: 40px;
+      font-weight: 600;
+      text-align: center;
+  }
+  
+  .testimonial-slider {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+
+  }
+  
+  .testimonial-card {
+      background-color: #ffffff;
+      border-radius: 10px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      width: 100%;
+      max-width: 500px;
+      opacity: 0;
+      transform: translateX(100%);
+      position: absolute;
+      transition: transform 0.6s ease, opacity 0.6s ease;
+      text-align: center;
+  }
+  
+  .testimonial-card.active {
+      opacity: 1;
+      transform: translateX(0);
+      position: relative;
+  }
+  
+  .testimonial-card.previous {
+      opacity: 0;
+      transform: translateX(-100%);
+  }
+  
+  .testimonial-card.next {
+      opacity: 0;
+      transform: translateX(100%);
+  }
+  
+  .testimonial-card p {
+      font-size: 1.2rem;
+      color: #7f8c8d;
+      line-height: 1.6;
+      margin-bottom: 25px;
+  }
+  
+  .testimonial-card h4 {
+      font-size: 1.4rem;
+      color: #34495e;
+      font-weight: 500;
+      margin-top: 15px;
+  }
+  
+  .testimonial-card .stars i {
+      color: #f39c12;
+      font-size: 1.4rem;
+  }
+  
+  .slider-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 25px;
+  }
+  
+  .slider-dot {
+      width: 12px;
+      height: 12px;
+      background-color: #bdc3c7;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  }
+  
+  .slider-dot.active {
+      background-color: var(--primary-color);
+  }
+  
+  .slider-dot:hover {
+      background-color: #34495e;
+  }
+  
+  /* Navigation Arrows (Optional) */
+  .testimonial-slider .prev,
+  .testimonial-slider .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.3);
+      color: white;
+      font-size: 2rem;
+      padding: 1rem;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background 0.3s ease;
+  }
+  
+  .testimonial-slider .prev:hover,
+  .testimonial-slider .next:hover {
+      background: var(--primary-color);
+  }
+  
+  .testimonial-slider .prev {
+      left: 20px;
+  }
+  
+  .testimonial-slider .next {
+      right: 20px;
+  }
+  
+  .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+  }
+  
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: var(--dark-background);
+    color: var(--light-background);
+    font-family: 'Poppins', sans-serif;
+}
+
+body.dark-mode .navbar {
+    background: linear-gradient(90deg, #1e2a2b, #2c3e50);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .navbar .logo {
+    color: var(--light-background);
+}
+
+body.dark-mode .nav-links .link {
+    color: var(--light-background);
+}
+
+body.dark-mode .nav-links .link:hover {
+    background: var(--primary-dark);
+    color: var(--light-background);
+}
+
+body.dark-mode .hero {
+    background: linear-gradient(90deg, #333, #1e2a2b);
+    color: var(--light-background);
+}
+
+body.dark-mode .btn-primary {
+    background: var(--primary-dark);
+    color: var(--light-background);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .btn-primary:hover {
+    background: var(--primary-color);
+}
+
+body.dark-mode .course-card {
+    background: #444;
+    box-shadow: 0 4px 8px var(--shadow-dark);
+    border-radius: var(--border-radius);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+body.dark-mode .course-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px var(--shadow-light);
+}
+
+body.dark-mode .course-card img {
+    border-radius: 10px;
+}
+
+body.dark-mode .course-card h3 {
+    color: var(--light-background);
+}
+
+body.dark-mode .footer {
+    background: var(--dark-background);
+    color: var(--light-background);
+    padding: 2rem 0;
+    font-size: 1rem;
+}
+
+body.dark-mode .footer a {
+    color: var(--light-background);
+}
+
+body.dark-mode .btn-secondary {
+    background: #333;
+    color: var(--light-background);
+    transition: background 0.3s;
+}
+
+body.dark-mode .btn-secondary:hover {
+    background: var(--primary-dark);
+}
+
+body.dark-mode .testimonial-card {
+    background-color: #444;
+    color: var(--light-background);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark-mode .testimonial-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .testimonial-card .stars i {
+    color: #f39c12;
+}
+
+body.dark-mode .feature-card {
+    background-color: #333;
+    color: #fff;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark-mode .feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 30px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .slider-dot.active {
+    background-color: var(--primary-color);
+}
+
+body.dark-mode .slider-dot:hover {
+    background-color: #34495e;
+}
+
+/* Dark Mode Toggle Button */
+#darkModeToggle {
+    background: transparent;
+    border: none;
+    color: var(--light-background);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.6rem 1.2rem;
+    transition: background 0.3s, color 0.3s;
+    border-radius: var(--border-radius);
+}
+
+#darkModeToggle i {
+    margin-right: 0.6rem;
+}
+
+#darkModeToggle:hover {
+    background: var(--button-hover-dark);
+    color: var(--primary-color);
+}
+
+/* Dark Mode Button in Dark Mode */
+body.dark-mode #darkModeToggle {
+    color: var(--light-background);
+}
+
+body.dark-mode #darkModeToggle:hover {
+    background: var(--button-hover-dark);
+    color: var(--light-background);
+}
+
+
+/* Dark Mode Toggle Button */
+#darkModeToggle {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    transition: background 0.3s, color 0.3s;
+    border-radius: var(--border-radius);
+}
+
+#darkModeToggle i {
+    margin-right: 0.5rem;
+}
+
+#darkModeToggle:hover {
+    background: var(--button-hover);
+    color: var(--primary-color);
+}
+
+/* Dark Mode Button in Dark Mode */
+body.dark-mode #darkModeToggle {
+    color: var(--light-background);
+}
+
+body.dark-mode #darkModeToggle:hover {
+    background: var(--button-hover-dark);
+    color: var(--light-background);
+}

@@ -1,0 +1,175 @@
+/* Responsive Styles */
+
+/* Mobile (Small screens up to 768px) */
+@media (max-width: 866px) {
+    /* Navbar */
+
+   
+    .hamburger {
+        display: flex;
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+    
+    .navbar {
+      flex-wrap: wrap;
+      padding: 1rem;
+    }
+  
+    .logo {
+      text-align: center;
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+  
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      cursor: pointer;
+    }
+  
+    .hamburger span {
+      display: block;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+  
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      text-align: center;
+      width: 100%;
+      gap: 1rem;
+      background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+      position: absolute;
+      top: 100%;
+      left: 0;
+      padding: 1rem 0;
+      z-index: 1;
+    }
+  
+    .nav-links.active {
+      display: flex;
+    }
+  
+    .hero-container {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+      }
+    
+      .hero-content {
+        margin-bottom: 1rem;
+      }
+    
+      .hero-content h2 {
+        font-size: 2rem;
+      }
+    
+      .hero-content p {
+        font-size: 0.9rem;
+      }
+    
+      .hero-content button {
+        font-size: 0.9rem;
+      }
+    
+      .hero-image img {
+        max-width: 60%;
+        margin-top: 1rem;
+      }
+  
+    /* Why Choose Us */
+    .features-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  
+    /* Courses */
+    .course-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    /* Testimonials */
+    .testimonial-card {
+      max-width: 100%;
+    }
+  }
+  
+  /* Tablet (Medium screens 769px - 1024px) */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    /* Hero Section */
+    .hero-content {
+      padding: 0 1rem;
+    }
+  
+    .hero-content h2 {
+      font-size: 2.5rem;
+    }
+  
+    .hero-image img {
+      max-width: 70%;
+    }
+  
+    /* Why Choose Us */
+    .features-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+  
+    /* Courses */
+    .course-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  
+    /* Navbar */
+    .nav-links {
+      flex-direction: row;
+      gap: 1rem;
+    }
+  }
+  
+  /* Desktop (Large screens 1025px and above) */
+  @media (min-width: 1025px) {
+    /* Navbar */
+    .nav-links {
+      display: flex;
+      justify-content: flex-end;
+    }
+  
+    /* Hero Section */
+    .hero-content h2 {
+      font-size: 3rem;
+    }
+  
+    .hero-image img {
+      max-width: 60%;
+    }
+  
+    /* Why Choose Us */
+    .features-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+  
+    /* Courses */
+    .course-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  

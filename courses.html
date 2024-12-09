@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Courses Page</title>
+  <link rel="stylesheet" href="couses.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="nav_container">
+      <div class="logo_container">
+        <h1 class="logo">📘 Learn and Earn Infinite LLP</h1>
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#home" class="link">Home</a></li>
+          <li><a href="courses.html" class="link">Courses</a></li>
+          <li><a href="#about" class="link">About</a></li>
+          <li><a href="#testimonials" class="link">Testimonials</a></li>
+          <li><a href="#contact" class="link">Contact</a></li>
+          <!-- Login/SignUp button -->
+          <li><button class="btn-login"><a href="Auth.html" class="signupbtn" id="login-signup-btn">Login/Sign Up</a></button></li>
+          <!-- Logout button -->
+          <li><button class="btn-logout" id="logout-btn" style="display:none;">Logout</button></li>
+          <li><button class="btn-darkmode" id="darkModeToggle"><i class="fas fa-moon"></i></button></li>
+
+        </ul>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- Search and Filters -->
+  <section class="search-filter-section">
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search for courses..." />
+      <button id="searchBtn" class="btn btn-primary"><i class="fas fa-search"></i></button>
+    </div>
+    <div class="filters">
+      <label for="category">Category:</label>
+      <select id="category" class="select">
+        <option value="all">All</option>
+        <option value="programming">Programming</option>
+        <option value="design">Design</option>
+        <option value="marketing">Marketing</option>
+        <option value="business">Business</option>
+      </select>
+      <label for="price">Price:</label>
+      <select id="price" class="select">
+        <option value="all">All</option>
+        <option value="free">Free</option>
+        <option value="paid">Paid</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- Courses -->
+  <section id="courses">
+    <div class="courses-container">
+      <!-- Dynamic course cards -->
+      <div class="course-card">
+        <img src="https://via.placeholder.com/150" alt="Course Image">
+        <h3>Course Title</h3>
+        <p>Short course description goes here.</p>
+        <button class="btn btn-primary">Enroll Now</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="courses.js"></script>
+</body>
+</html>
