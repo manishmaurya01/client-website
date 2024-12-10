@@ -188,13 +188,15 @@
   /* Course Cards */
   .courses-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     padding: 2rem 3rem;
     margin-top: 2rem;
+    width: 100%;
   }
   
   .course-card {
+    width: 100%;
     background: var(--card-background);
     border-radius: var(--border-radius);
     box-shadow: 0 4px 12px var(--card-shadow);

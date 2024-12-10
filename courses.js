@@ -114,3 +114,94 @@ logoutBtn.addEventListener('click', () => {
     console.error('Error signing out: ', error);
   });
 });
+
+
+// Firestore imports
+import { getFirestore, doc, getDocs, setDoc, collection } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+const db = getFirestore(app);
+
+// Default courses
+const defaultCourses = [
+  {
+    title: "Introduction to Programming",
+    description: "Learn the basics of programming with this beginner-friendly course.",
+    category: "programming",
+    price: "free",
+    image: "https://codethedream.org/wp-content/uploads/2023/12/Intro-to-Programming-1024x1024.png"
+  },
+  {
+    title: "Graphic Design Fundamentals",
+    description: "Explore the principles of graphic design and start creating.",
+    category: "design",
+    price: "paid",
+    image: "https://www.classcentral.com/report/wp-content/uploads/2022/09/Graphic-Design-BCG-Banner.png"
+  },
+  {
+    title: "Digital Marketing Basics",
+    description: "Master the essentials of digital marketing.",
+    category: "marketing",
+    price: "free",
+    image: "https://fueler.io/storage/users/timeline_image/1659279686-jy2p84ykvimsekzsjsx3.png"
+  },
+  {
+    title: "Business Strategy 101",
+    description: "Learn to develop effective business strategies.",
+    category: "business",
+    price: "free",
+    image: "https://media.geeksforgeeks.org/wp-content/uploads/20240223125319/Business-Strategy-copy.webp"
+  },
+  {
+    title: "Advanced JavaScript",
+    description: "Take your JavaScript skills to the next level.",
+    category: "programming",
+    price: "paid",
+    image: "https://i.ytimg.com/vi/8g_CbydoWBo/maxresdefault.jpg"
+  }
+];
+
+// Function to initialize courses
+async function initializeCourses() {
+  const coursesRef = collection(db, "courses");
+  const snapshot = await getDocs(coursesRef);
+
+  if (snapshot.empty) {
+    // Add default courses to Firestore
+    for (const course of defaultCourses) {
+      const courseRef = doc(coursesRef);
+      await setDoc(courseRef, course);
+    }
+    console.log("Default courses added.");
+  } else {
+    console.log("Courses already exist in Firestore.");
+  }
+
+  // List all courses
+  listCourses();
+}
+
+// Function to list all courses
+async function listCourses() {
+  const coursesRef = collection(db, "courses");
+  const snapshot = await getDocs(coursesRef);
+  const coursesContainer = document.querySelector(".courses-container");
+
+  // Clear existing courses from the container
+  coursesContainer.innerHTML = "";
+
+  snapshot.forEach((doc) => {
+    const course = doc.data();
+    const courseCard = `
+      <div class="course-card">
+        <img src="${course.image}" alt="Course Image">
+        <h3>${course.title}</h3>
+        <p>${course.description}</p>
+        <button class="btn btn-primary">Enroll Now</button>
+      </div>
+    `;
+    coursesContainer.innerHTML += courseCard;
+  });
+}
+
+// Initialize courses on page load
+initializeCourses();
