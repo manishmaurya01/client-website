@@ -95,10 +95,10 @@ function renderCourses(courses) {
   });
 }
 
-
 // Event listener for search and filters
 function setupEventListeners(courses) {
-  document.getElementById("searchBtn").addEventListener("click", () => {
+  // Live search
+  document.getElementById("searchInput").addEventListener("input", () => {
     const searchQuery = document.getElementById("searchInput").value.toLowerCase();
     const filteredCourses = courses.filter((course) =>
       course.title.toLowerCase().includes(searchQuery)
@@ -106,16 +106,19 @@ function setupEventListeners(courses) {
     renderCourses(filteredCourses);
   });
 
+  // Category filter
   document.getElementById("category").addEventListener("change", () => {
     const filteredCourses = applyFilters(courses);
     renderCourses(filteredCourses);
   });
 
+  // Price filter
   document.getElementById("price").addEventListener("change", () => {
     const filteredCourses = applyFilters(courses);
     renderCourses(filteredCourses);
   });
 }
+
 
 // Function to initialize courses
 async function initializeCourses() {
