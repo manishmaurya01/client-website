@@ -1,72 +1,9 @@
-// document.getElementById("searchBtn").addEventListener("click", () => {
-//     const searchQuery = document.getElementById("searchInput").value.toLowerCase();
-//     console.log("Search for:", searchQuery); // Placeholder for search functionality
-//   });
-  
-//   // Dropdown functionality for profile
-//   document.getElementById("profile-btn").addEventListener("click", () => {
-//     document.getElementById("profile-menu").classList.toggle("show");
-//   });
-  
-//   // Filters functionality
-//   document.getElementById("category").addEventListener("change", (e) => {
-//     const selectedCategory = e.target.value;
-//     console.log("Filter by category:", selectedCategory); // Placeholder
-//   });
-  
-//   document.getElementById("price").addEventListener("change", (e) => {
-//     const selectedPrice = e.target.value;
-//     console.log("Filter by price:", selectedPrice); // Placeholder
-//   });
-
-  // Hamburger Menu
-const hamburger = document.getElementById("hamburger");
-const navLinks = document.querySelector(".nav-links");
-hamburger.addEventListener("click", () => {
-  navLinks.classList.toggle("active");
-  hamburger.classList.toggle("active");
-});
-
-// Testimonial Slider Logic
-const testimonialCards = document.querySelectorAll('.testimonial-card');
-const sliderDotsContainer = document.createElement('div');
-sliderDotsContainer.classList.add('slider-dots');
-const testimonialsSection = document.querySelector('.testimonials');
-
-  
-// Dark Mode Toggle Logic
-const darkModeToggle = document.getElementById('darkModeToggle');
-const body = document.body;
-
-// Check for stored dark mode preference and apply it
-if (localStorage.getItem('darkMode') === 'enabled') {
-    body.classList.add('dark-mode');
-    darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>'; // Change the icon to the sun
-} else {
-    darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>'; // Default to moon icon
-}
-
-// Toggle dark mode on button click
-darkModeToggle.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-    
-    // Save dark mode preference in localStorage
-    if (body.classList.contains('dark-mode')) {
-        localStorage.setItem('darkMode', 'enabled');
-        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>'; // Change the icon to the sun
-    } else {
-        localStorage.setItem('darkMode', 'disabled');
-        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>'; // Change the icon to the moon
-    }
-});
-
-
-// Import the functions you need from the SDKs
+// Import Firebase modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
 import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
-// Your web app's Firebase configuration
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCqsvc4K4QRjxomcQLqsCWa24VyXhnOitA",
   authDomain: "learnandearn-b1e1b.firebaseapp.com",
@@ -79,49 +16,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const auth = getAuth(app);
-
-const loginSignupBtn = document.querySelector('.btn-login');
-const logoutBtn = document.getElementById('logout-btn');
-
-// Check if the user is logged in by looking at localStorage
-if (localStorage.getItem('user')) {
-  // If user is logged in, show the logout button and hide the login button
-  loginSignupBtn.style.display = 'none';
-  logoutBtn.style.display = 'block';
-} else {
-  // If user is not logged in, show the login button
-  loginSignupBtn.style.display = 'block';
-  logoutBtn.style.display = 'none';
-}
-
-// Logout Functionality
-logoutBtn.addEventListener('click', () => {
-  // Log out from Firebase using the modular SDK
-  signOut(auth).then(() => {
-    // Clear user data from localStorage
-    localStorage.removeItem('user');
-
-    // Hide the logout button and show the login/signup button again
-    loginSignupBtn.style.display = 'block';
-    logoutBtn.style.display = 'none';
-
-    // Optionally, redirect to the login/signup page after logout
-    window.location.href = 'Auth.html'; // Redirect to Auth page
-  }).catch((error) => {
-    // Handle errors during sign out
-    console.error('Error signing out: ', error);
-  });
-});
-
-
-// Firestore imports
-import { getFirestore, doc, getDocs, setDoc, collection } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
-
 const db = getFirestore(app);
 
-// Default courses
+// Default courses in case Firestore is unavailable
 const defaultCourses = [
   {
     title: "Introduction to Programming",
@@ -160,37 +57,32 @@ const defaultCourses = [
   }
 ];
 
-// Function to initialize courses
-async function initializeCourses() {
-  const coursesRef = collection(db, "courses");
-  const snapshot = await getDocs(coursesRef);
+// Function to apply filters
+function applyFilters(courses) {
+  const selectedCategory = document.getElementById("category").value;
+  const selectedPrice = document.getElementById("price").value;
 
-  if (snapshot.empty) {
-    // Add default courses to Firestore
-    for (const course of defaultCourses) {
-      const courseRef = doc(coursesRef);
-      await setDoc(courseRef, course);
-    }
-    console.log("Default courses added.");
-  } else {
-    console.log("Courses already exist in Firestore.");
+  return courses.filter((course) => {
+    const categoryMatch = selectedCategory === "all" || course.category === selectedCategory;
+    const priceMatch = selectedPrice === "all" || course.price === selectedPrice;
+    return categoryMatch && priceMatch;
+  });
+}
+// Function to render courses
+function renderCourses(courses) {
+  const coursesContainer = document.querySelector(".courses-container");
+  coursesContainer.innerHTML = ""; // Clear previous courses
+
+  if (courses.length === 0) {
+    coursesContainer.innerHTML = `
+      <div class="no-data-message">
+        <p>No courses available at the moment. Please check back later!</p>
+      </div>
+    `;
+    return;
   }
 
-  // List all courses
-  listCourses();
-}
-
-// Function to list all courses
-async function listCourses() {
-  const coursesRef = collection(db, "courses");
-  const snapshot = await getDocs(coursesRef);
-  const coursesContainer = document.querySelector(".courses-container");
-
-  // Clear existing courses from the container
-  coursesContainer.innerHTML = "";
-
-  snapshot.forEach((doc) => {
-    const course = doc.data();
+  courses.forEach((course) => {
     const courseCard = `
       <div class="course-card">
         <img src="${course.image}" alt="Course Image">
@@ -201,6 +93,53 @@ async function listCourses() {
     `;
     coursesContainer.innerHTML += courseCard;
   });
+}
+
+
+// Event listener for search and filters
+function setupEventListeners(courses) {
+  document.getElementById("searchBtn").addEventListener("click", () => {
+    const searchQuery = document.getElementById("searchInput").value.toLowerCase();
+    const filteredCourses = courses.filter((course) =>
+      course.title.toLowerCase().includes(searchQuery)
+    );
+    renderCourses(filteredCourses);
+  });
+
+  document.getElementById("category").addEventListener("change", () => {
+    const filteredCourses = applyFilters(courses);
+    renderCourses(filteredCourses);
+  });
+
+  document.getElementById("price").addEventListener("change", () => {
+    const filteredCourses = applyFilters(courses);
+    renderCourses(filteredCourses);
+  });
+}
+
+// Function to initialize courses
+async function initializeCourses() {
+  const coursesRef = collection(db, "courses");
+  let courses = [];
+
+  try {
+    const snapshot = await getDocs(coursesRef);
+    if (snapshot.empty) {
+      console.log("Firestore is empty. Using default courses.");
+      courses = defaultCourses;
+    } else {
+      snapshot.forEach((doc) => {
+        courses.push(doc.data());
+      });
+    }
+  } catch (error) {
+    console.error("Error fetching courses from Firestore. Falling back to default courses.", error);
+    courses = defaultCourses;
+  }
+
+  // Render and set up event listeners
+  renderCourses(courses);
+  setupEventListeners(courses);
 }
 
 // Initialize courses on page load
