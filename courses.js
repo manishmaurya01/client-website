@@ -150,8 +150,8 @@ function setupEventListeners(courses) {
     const searchQuery = document.getElementById("searchInput").value.toLowerCase();
     const filteredCourses = courses.filter((course) =>
       course.title.toLowerCase().includes(searchQuery)
-    );
-    renderCourses(filteredCourses);
+  );
+  renderCourses(filteredCourses);
   });
 
   // Category filter
@@ -204,3 +204,18 @@ async function initializeCourses() {
 
 // Initialize courses when the page loads
 initializeCourses();
+
+const loginSignupBtn = document.querySelector('.btn-login');
+const logoutBtn = document.getElementById('logout-btn');
+
+// Check if the user is logged in by looking at localStorage
+if (localStorage.getItem('user')) {
+  // If user is logged in, show the logout button and hide the login button
+  loginSignupBtn.style.display = 'none';
+  logoutBtn.style.display = 'block';
+  
+} else {
+  // If user is not logged in, show the login button
+  loginSignupBtn.style.display = 'block';
+  logoutBtn.style.display = 'none';
+}
