@@ -416,3 +416,93 @@
       width: 100%;
     }
   }
+
+
+  /* Dark Mode Styles */
+body[data-theme="dark"] {
+  --primary-color: #1b5e20;
+  --primary-dark: #004d40;
+  --secondary-color: #424242;
+  --text-color: #e0e0e0;
+  --light-background: #121212;
+  --dark-background: #000000;
+  --gray-text: #aaaaaa;
+  --border-radius: 8px;
+  --shadow-light: rgba(255, 255, 255, 0.1);
+  --shadow-dark: rgba(255, 255, 255, 0.2);
+  --button-hover: #616161;
+  --button-hover-dark: #004d40;
+  --card-background: #1e1e1e;
+  --card-hover-background: #2e2e2e;
+  --card-shadow: rgba(255, 255, 255, 0.1);
+}
+
+/* Adjustments for Elements in Dark Mode */
+body[data-theme="dark"] .navbar {
+  background: linear-gradient(90deg, var(--primary-dark), var(--primary-color));
+  box-shadow: 0 4px 6px var(--shadow-dark);
+}
+
+body[data-theme="dark"] .nav-links .link {
+  color: var(--text-color);
+}
+
+body[data-theme="dark"] .nav-links .link:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+body[data-theme="dark"] .btn-login,
+body[data-theme="dark"] #logout-btn {
+  background: var(--primary-dark);
+  color: white;
+}
+
+body[data-theme="dark"] .btn-login:hover,
+body[data-theme="dark"] #logout-btn:hover {
+  background: var(--button-hover);
+  color: var(--text-color);
+}
+
+body[data-theme="dark"] .search-filter-section {
+  background: var(--card-background);
+  box-shadow: 0 4px 8px var(--shadow-dark);
+}
+
+body[data-theme="dark"] .search-bar input {
+  background: var(--dark-background);
+  color: var(--text-color);
+  border: 1px solid var(--gray-text);
+}
+
+body[data-theme="dark"] .search-bar button {
+  background: var(--primary-dark);
+}
+
+body[data-theme="dark"] .search-bar button:hover {
+  background: var(--button-hover-dark);
+}
+
+body[data-theme="dark"] .filters select {
+  background: var(--dark-background);
+  color: var(--text-color);
+  border: 1px solid var(--gray-text);
+}
+
+body[data-theme="dark"] .course-card {
+  background: var(--card-background);
+  box-shadow: 0 4px 12px var(--shadow-dark);
+}
+
+body[data-theme="dark"] .course-card:hover {
+  box-shadow: 0 6px 16px var(--primary-dark);
+  background-color: var(--card-hover-background);
+}
+
+body[data-theme="dark"] .course-card h3 {
+  color: var(--primary-color);
+}
+
+body[data-theme="dark"] .course-card p {
+  color: var(--gray-text);
+}

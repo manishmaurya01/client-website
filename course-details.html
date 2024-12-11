@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Details</title>
+  <link rel="stylesheet" href="course-details.css"> <!-- Link your CSS here -->
+</head>
+<body>
+  <div class="course-details-container">
+    <div class="course-header">
+      <img id="courseImage" src="" alt="Course Image">
+      <h1 id="courseTitle"></h1>
+    </div>
+
+    <div class="course-info">
+      <p id="courseDescription"></p>
+      <p><strong>Price:</strong> <span id="coursePrice"></span></p>
+      <p><strong>Category:</strong> <span id="courseCategory"></span></p>
+    </div>
+
+    <!-- Enrollment Form Section -->
+    <div class="enroll-section">
+      <h2>Enroll Now</h2>
+      <form id="enrollForm">
+        <label for="studentName">Full Name:</label>
+        <input type="text" id="studentName" required placeholder="Enter your name">
+
+        <label for="studentEmail">Email Address:</label>
+        <input type="email" id="studentEmail" required placeholder="Enter your email">
+
+        <button type="submit" class="btn">Enroll Now</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="course-details.js"></script> <!-- Link to JS for dynamic loading -->
+</body>
+</html>

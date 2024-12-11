@@ -13,7 +13,6 @@ const sliderDotsContainer = document.createElement('div');
 sliderDotsContainer.classList.add('slider-dots');
 const testimonialsSection = document.querySelector('.testimonials');
 
-  
 // Dark Mode Toggle Logic
 const darkModeToggle = document.getElementById('darkModeToggle');
 const body = document.body;
@@ -39,11 +38,21 @@ darkModeToggle.addEventListener('click', () => {
         darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>'; // Change the icon to the moon
     }
 });
+document.getElementById("darkModeToggle").addEventListener("click", () => {
+  const currentTheme = document.body.getAttribute("data-theme");
+  const newTheme = currentTheme === "dark" ? "light" : "dark";
+  document.body.setAttribute("data-theme", newTheme);
+  localStorage.setItem("theme", newTheme); // Save theme preference
+});
+
+// Apply saved theme preference on load
+const savedTheme = localStorage.getItem("theme") || "light";
+document.body.setAttribute("data-theme", savedTheme);
+
 
 // Import Firebase modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+import { getFirestore, collection, getDocs, doc, writeBatch } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -99,6 +108,29 @@ const defaultCourses = [
   }
 ];
 
+// Function to render courses
+function renderCourses(courses) {
+  const coursesContainer = document.querySelector(".courses-container");
+  coursesContainer.innerHTML = ""; // Clear previous courses
+
+  if (courses.length === 0) {
+    coursesContainer.innerHTML = `<p>No courses available at the moment.</p>`;
+    return;
+  }
+
+  courses.forEach((course) => {
+    const courseCard = `
+      <div class="course-card">
+        <img src="${course.image}" alt="${course.title}">
+        <h3>${course.title}</h3>
+        <p>${course.description}</p>
+        <button class="btn btn-primary">Enroll Now</button>
+      </div>
+    `;
+    coursesContainer.innerHTML += courseCard;
+  });
+}
+
 // Function to apply filters
 function applyFilters(courses) {
   const selectedCategory = document.getElementById("category").value;
@@ -110,34 +142,8 @@ function applyFilters(courses) {
     return categoryMatch && priceMatch;
   });
 }
-// Function to render courses
-function renderCourses(courses) {
-  const coursesContainer = document.querySelector(".courses-container");
-  coursesContainer.innerHTML = ""; // Clear previous courses
 
-  if (courses.length === 0) {
-    coursesContainer.innerHTML = `
-      <div class="no-data-message">
-        <p>No courses available at the moment. Please check back later!</p>
-      </div>
-    `;
-    return;
-  }
-
-  courses.forEach((course) => {
-    const courseCard = `
-      <div class="course-card">
-        <img src="${course.image}" alt="Course Image">
-        <h3>${course.title}</h3>
-        <p>${course.description}</p>
-        <button class="btn btn-primary">Enroll Now</button>
-      </div>
-    `;
-    coursesContainer.innerHTML += courseCard;
-  });
-}
-
-// Event listener for search and filters
+// Event listener setup
 function setupEventListeners(courses) {
   // Live search
   document.getElementById("searchInput").addEventListener("input", () => {
@@ -161,7 +167,6 @@ function setupEventListeners(courses) {
   });
 }
 
-
 // Function to initialize courses
 async function initializeCourses() {
   const coursesRef = collection(db, "courses");
@@ -170,8 +175,19 @@ async function initializeCourses() {
   try {
     const snapshot = await getDocs(coursesRef);
     if (snapshot.empty) {
-      console.log("Firestore is empty. Using default courses.");
-      courses = defaultCourses;
+      console.log("Firestore is empty. Adding default courses.");
+
+      const batch = writeBatch(db); // Create a batch object
+
+      defaultCourses.forEach((course) => {
+        const courseRef = doc(coursesRef); // Create a new document reference for each course
+        batch.set(courseRef, course); // Add the set operation to the batch
+      });
+
+      await batch.commit(); // Commit the batch operation
+      console.log("Default courses have been added to Firestore.");
+
+      courses = defaultCourses; // Use default courses for rendering
     } else {
       snapshot.forEach((doc) => {
         courses.push(doc.data());
@@ -179,13 +195,12 @@ async function initializeCourses() {
     }
   } catch (error) {
     console.error("Error fetching courses from Firestore. Falling back to default courses.", error);
-    courses = defaultCourses;
+    courses = defaultCourses; // Fallback to default courses in case of error
   }
 
-  // Render and set up event listeners
   renderCourses(courses);
   setupEventListeners(courses);
 }
 
-// Initialize courses on page load
+// Initialize courses when the page loads
 initializeCourses();
