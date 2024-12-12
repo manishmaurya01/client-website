@@ -6,28 +6,169 @@
     <title>Contact Us</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+
+/* Root Variables */
+:root {
+    --primary-color: #4caf50;
+    --primary-dark: #3c8d40;
+    --secondary-color: #e0e0e0;
+    --text-color: #333;
+    --light-background: #f9f9f9;
+    --dark-background: #333;
+    --gray-text: #555;
+    --border-radius: 8px;
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --shadow-dark: rgba(0, 0, 0, 0.2);
+    --button-hover: #e0e0e0;
+    --button-hover-dark: #3c8d40;
+    --card-background: #fff;
+    --card-hover-background: #f4f4f4;
+    --card-shadow: rgba(0, 0, 0, 0.1);
+  }
                body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
             background: linear-gradient(135deg, #3a1c71, #d76d77, #ffaf7b);
             color: #fff;
-            display: flex;
+            /* display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: center; */
             height: 100vh;
+        }
+        .main-con{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        
+
+
+.navbar {
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    padding: 0.5rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px var(--shadow-light);
+}
+
+.nav_container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: auto;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-links .link {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--border-radius);
+    transition: background 0.3s, color 0.3s;
+}
+
+.nav-links .link:hover {
+    background: white;
+    color: var(--primary-color);
+}
+
+.btn-login{
+    background: white;
+    color: var(--primary-color);
+    border: none;
+    padding: 0.4rem 1rem;
+    cursor: pointer;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+.signupbtn{
+  color: var(--primary-color);
+  text-decoration: unset;
+}
+#logout-btn{
+  background: white;
+  color: var(--primary-color);
+  border: none;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+#logout-btn:hover{
+  background: var(--button-hover);
+    color: var(--primary-dark);
+}
+
+
+.btn-login:hover {
+    background: var(--button-hover);
+    color: var(--primary-dark);
+}
+
+
+  
+  /* Dark Mode Toggle */
+  #darkModeToggle {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  #darkModeToggle:hover {
+    background: var(--button-hover-dark);
+  }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #fff;
+            /* display: flex;
+            align-items: center;
+            justify-content: center; */
+            height: 100vh;
+            overflow: hidden;
         }
 
         .contact-container {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 20px;
             padding: 50px;
             max-width: 650px;
             width: 90%;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(12px);
             text-align: center;
-            align-items: center;
         }
 
         .contact-header {
@@ -37,57 +178,57 @@
         .contact-header h1 {
             font-size: 3rem;
             margin-bottom: 15px;
-            color: #ffaf7b;
+            color: #76c7c0;
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
 
         .contact-header p {
-            font-size: 1.3rem;
-            color: #e6e6e6;
+            font-size: 1.2rem;
+            color: #d9e3f0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .contact-form {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
             gap: 20px;
         }
 
         .contact-form input,
         .contact-form textarea {
             width: 100%;
-            padding: 15px 20px;
+            padding: 15px;
             border: none;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.25);
-            color: #fff;
-            font-size: 1.1rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            color: #333;
+            font-size: 1rem;
             outline: none;
-            transition: all 0.3s ease;
-            box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s, box-shadow 0.3s;
+            box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1);
         }
 
         .contact-form input:focus,
         .contact-form textarea:focus {
-            background: rgba(255, 255, 255, 0.35);
-            box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.5);
+            box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .contact-form button {
             padding: 15px;
             border: none;
-            border-radius: 10px;
-            background: #ffaf7b;
+            border-radius: 8px;
+            background: #76c7c0;
             color: #fff;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: bold;
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .contact-form button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 175, 123, 0.5);
+            box-shadow: 0 10px 20px rgba(118, 199, 192, 0.5);
         }
 
         .social-media {
@@ -95,16 +236,93 @@
         }
 
         .social-media a {
-            margin: 0 15px;
-            color: #fff;
-            font-size: 2.2rem;
+            margin: 0 10px;
+            color: #76c7c0;
+            font-size: 2rem;
             transition: transform 0.3s, color 0.3s;
         }
 
         .social-media a:hover {
-            color: #ffd700;
-            transform: scale(1.25);
+            color: #d9e3f0;
+            transform: scale(1.2);
         }
+        /* Dark Mode Styles */
+body.dark-mode {
+    background: linear-gradient(135deg, #121212, #1e1e1e);
+    color: #e0e0e0;
+}
+
+body.dark-mode .navbar {
+    background: linear-gradient(90deg, #212121, #1a1a1a);
+    box-shadow: 0 4px 6px var(--shadow-dark);
+}
+
+body.dark-mode .navbar .nav-links .link {
+    color: #e0e0e0;
+}
+
+body.dark-mode .navbar .nav-links .link:hover {
+    background: #333;
+    color: #76c7c0;
+}
+
+body.dark-mode .btn-login, 
+body.dark-mode .btn-logout {
+    background: #333;
+    color: #76c7c0;
+}
+
+body.dark-mode .btn-login:hover, 
+body.dark-mode .btn-logout:hover {
+    background: #444;
+    color: #e0e0e0;
+}
+
+body.dark-mode .contact-container {
+    background: rgba(40, 40, 40, 0.9);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.8);
+}
+
+body.dark-mode .contact-header h1 {
+    color: #76c7c0;
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode .contact-header p {
+    color: #cccccc;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode .contact-form input,
+body.dark-mode .contact-form textarea {
+    background: #333;
+    color: #e0e0e0;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .contact-form input:focus,
+body.dark-mode .contact-form textarea:focus {
+    background: #444;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode .contact-form button {
+    background: #4caf50;
+    color: #fff;
+}
+
+body.dark-mode .contact-form button:hover {
+    box-shadow: 0 10px 20px rgba(76, 175, 80, 0.8);
+}
+
+body.dark-mode .social-media a {
+    color: #76c7c0;
+}
+
+body.dark-mode .social-media a:hover {
+    color: #fff;
+}
+
 
         @media (max-width: 1024px) {
             body {
@@ -125,11 +343,11 @@
             }
 
             .contact-form button {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
 
             .social-media a {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
         }
 
@@ -139,11 +357,11 @@
             }
 
             .contact-form button {
-                font-size: 1.1rem;
+                font-size: 1rem;
             }
 
             .social-media a {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
         }
 
@@ -159,22 +377,55 @@
             .contact-form input,
             .contact-form textarea {
                 font-size: 0.9rem;
-                padding: 12px 15px;
+                padding: 12px;
             }
 
             .contact-form button {
-                font-size: 1rem;
+                font-size: 0.9rem;
                 padding: 12px;
             }
 
             .social-media a {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
         }
+
 
     </style>
 </head>
 <body>
+
+
+    <!-- Navbar -->
+  <header class="navbar">
+    <div class="nav_container">
+      <div class="logo_container">
+        <h1 class="logo">📘 Learn and Earn Infinite LLP</h1>    
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#home" class="link">Home</a></li>
+          <li><a href="courses.html" class="link">Courses</a></li>
+          <li><a href="#about" class="link">About</a></li>
+          <li><a href="#testimonials" class="link">Testimonials</a></li>
+          <li><a href="contactus.html" class="link">Contact</a></li>
+          <!-- Login/SignUp button -->
+          <li><button class="btn-login"><a href="Auth.html" class="signupbtn" id="login-signup-btn">Login/Sign Up</a></button></li>
+          <!-- Logout button -->
+          <li><button class="btn-logout" id="logout-btn" style="display:none;">Logout</button></li>
+          <li><button class="btn-darkmode" id="darkModeToggle"><i class="fas fa-moon"></i></button></li>
+
+        </ul>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </div>
+  </header>
+<div class="main-con">
+
     <div class="contact-container">
         <div class="contact-header">
             <h1>Contact Us</h1>
@@ -196,5 +447,67 @@
             <a href="mailto:support@mauryamanish586@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
         </div>
     </div>
+</div>
+
+    <script>
+        // Hamburger Menu
+const hamburger = document.getElementById("hamburger");
+const navLinks = document.querySelector(".nav-links");
+hamburger.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+  hamburger.classList.toggle("active");
+});
+
+// Testimonial Slider Logic
+const testimonialCards = document.querySelectorAll('.testimonial-card');
+const sliderDotsContainer = document.createElement('div');
+sliderDotsContainer.classList.add('slider-dots');
+const testimonialsSection = document.querySelector('.testimonials');
+
+// Dark Mode Toggle Logic
+const darkModeToggle = document.getElementById('darkModeToggle');
+const body = document.body;
+
+// Check for stored dark mode preference and apply it
+if (localStorage.getItem('darkMode') === 'enabled') {
+  body.classList.add('dark-mode');
+  darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>'; // Change the icon to the sun
+} else {
+  darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>'; // Default to moon icon
+}
+
+// Toggle dark mode on button click
+darkModeToggle.addEventListener('click', () => {
+  body.classList.toggle('dark-mode');
+
+  // Save dark mode preference in localStorage
+  if (body.classList.contains('dark-mode')) {
+    localStorage.setItem('darkMode', 'enabled');
+    darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>'; // Change the icon to the sun
+  } else {
+    localStorage.setItem('darkMode', 'disabled');
+    darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>'; // Change the icon to the moon
+  }
+});
+
+// Apply saved theme preference on load
+const savedTheme = localStorage.getItem("theme") || "light";
+document.body.setAttribute("data-theme", savedTheme);
+
+
+// Login/Logout button logic
+const loginSignupBtn = document.querySelector('.btn-login');
+const logoutBtn = document.getElementById('logout-btn');
+
+if (localStorage.getItem('user')) {
+  loginSignupBtn.style.display = 'none';
+  logoutBtn.style.display = 'block';
+} else {
+  loginSignupBtn.style.display = 'block';
+  logoutBtn.style.display = 'none';
+}
+
+
+    </script>
 </body>
 </html>
