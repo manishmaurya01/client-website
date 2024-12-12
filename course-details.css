@@ -1,150 +1,85 @@
-/* General Styles */
+/* Base Styling */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.course-details {
+  max-width: 900px;
+  margin: 3rem auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Course Image */
+#course-image {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+}
+
+/* Course Title */
+#course-title {
+  font-size: 2rem;
+  color: #222;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+/* Course Description */
+#course-description {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+/* Enroll Button */
+#enroll-button {
+  background-color: #007bff;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#enroll-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-3px);
+}
+
+#enroll-button:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .course-details {
+    padding: 1.5rem;
   }
-  
-  /* Course Container */
-  .courses-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    justify-items: center;
-  }
-  
-  .course-card {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    width: 300px;
-    text-align: center;
-    padding: 20px;
-  }
-  
-  .course-card img {
-    max-width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-  
-  .course-card h3 {
-    font-size: 1.5rem;
-    margin: 15px 0;
-  }
-  
-  .course-card p {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 20px;
-  }
-  
-  .btn {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn:hover {
-    background-color: #45a049;
-  }
-  
-  /* Course Details Page */
-  .course-details-container {
-    max-width: 800px;
-    margin: 40px auto;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-  }
-  
-  .course-header {
-    text-align: center;
-  }
-  
-  .course-header img {
-    width: 100%;
-    height: 350px;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-  
-  .course-header h1 {
-    font-size: 2rem;
-    margin-top: 15px;
-  }
-  
-  .course-info p {
-    font-size: 1.1rem;
-    color: #333;
-  }
-  
-  .course-info strong {
-    color: #4caf50;
-  }
-  
-  .enroll-section {
-    margin-top: 30px;
-  }
-  
-  .enroll-section h2 {
+
+  #course-title {
     font-size: 1.8rem;
-    margin-bottom: 15px;
   }
-  
-  .enroll-section form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .enroll-section label {
+
+  #course-description {
     font-size: 1rem;
-    color: #333;
   }
-  
-  .enroll-section input {
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+
+  #enroll-button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
   }
-  
-  .enroll-section button {
-    background-color: #4caf50;
-    color: white;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.1rem;
-    transition: background-color 0.3s ease;
-  }
-  
-  .enroll-section button:hover {
-    background-color: #45a049;
-  }
-  
-  /* No Data Message */
-  .no-data-message {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #888;
-    padding: 40px;
-  }
-  
-  .no-data-message p {
-    font-weight: bold;
-  }
-  
+}
