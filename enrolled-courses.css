@@ -1,0 +1,579 @@
+/* General Styling */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--light-background);
+  color: var(--text-color);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Root Variables */
+:root {
+  --primary-color: #4caf50;
+  --primary-dark: #3c8d40;
+  --secondary-color: #e0e0e0;
+  --text-color: #333;
+  --light-background: #f9f9f9;
+  --dark-background: #333;
+  --gray-text: #555;
+  --border-radius: 8px;
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-dark: rgba(0, 0, 0, 0.2);
+  --button-hover: #e0e0e0;
+  --button-hover-dark: #3c8d40;
+  --card-background: #fff;
+  --card-hover-background: #f4f4f4;
+  --card-shadow: rgba(0, 0, 0, 0.1);
+}
+ 
+  /* Utility Classes */
+  .container {
+    width: 90%;
+    /* max-width: 1200px; */
+    margin: 0 auto;
+}
+
+.navbar {
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    padding: 0.5rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px var(--shadow-light);
+}
+
+.nav_container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: auto;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-links .link {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--border-radius);
+    transition: background 0.3s, color 0.3s;
+}
+
+.nav-links .link:hover {
+    background: white;
+    color: var(--primary-color);
+}
+
+.btn-login{
+  background: white;
+  color: var(--primary-color);
+  border: none;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+.signupbtn{
+color: var(--primary-color);
+text-decoration: unset;
+}
+#logout-btn{
+background: white;
+color: var(--primary-color);
+border: none;
+padding: 0.4rem 1rem;
+cursor: pointer;
+border-radius: 20px;
+font-weight: bold;
+font-size: 0.9rem;
+transition: all 0.3s;
+}
+#logout-btn:hover{
+background: var(--button-hover);
+  color: var(--primary-dark);
+}
+
+
+.btn-login:hover {
+  background: var(--button-hover);
+  color: var(--primary-dark);
+}
+
+
+
+/* Dark Mode Toggle */
+#darkModeToggle {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+}
+
+#darkModeToggle:hover {
+  background: var(--button-hover-dark);
+}
+
+body[data-theme="dark"] .btn-login,
+body[data-theme="dark"] #logout-btn {
+  background: var(--primary-dark);
+  color: white;
+}
+
+body[data-theme="dark"] .btn-login:hover,
+body[data-theme="dark"] #logout-btn:hover {
+  background: var(--button-hover);
+  color: var(--text-color);
+}
+
+/* Mobile (Small screens up to 768px) */
+@media (max-width: 886px) {
+  .hamburger {
+    display: flex;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+  .navbar {
+    flex-wrap: wrap;
+    padding: 1rem;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    gap: 1rem;
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 1rem 0;
+    z-index: 1;
+  }
+
+  .nav-links.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav-links {
+    gap: 1rem;
+    text-align: center;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+  }
+    
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+  }
+
+  .hamburger span {
+    display: block;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+  }
+
+
+.hamburger.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+.navbar {
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+.logo {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+}
+
+}
+
+/* Tablet (Medium screens 769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .nav-links {
+    flex-direction: row;
+    gap: 1rem;
+  }
+}
+
+/* Desktop (Large screens 1025px and above) */
+@media (min-width: 1025px) {
+  .nav-links {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+/* Container for the course list */
+#course-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Adjust card size */
+  gap: 20px;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+/* Style for each course card */
+.course-card {
+  background-color: var(--card-background);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px var(--card-shadow);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+/* Hover effect to scale the card and add shadow */
+.course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px var(--shadow-dark);
+}
+
+/* Image styling inside the card */
+.course-card img {
+  width: 100%;
+  height: auto; /* Fixed height for image */
+  object-fit: cover;
+  border-bottom: 2px solid #f1f1f1;
+  transition: transform 0.3s ease;
+}
+
+/* Hover effect on image to zoom slightly */
+.course-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Course information section */
+.course-info {
+  flex-grow: 1;
+  padding: 15px;
+  background-color: #fafafa;
+  border-top: 1px solid #f1f1f1;
+  color: var(--text-color);
+}
+
+/* Course title */
+.course-info h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--text-color);
+  text-transform: capitalize;
+  line-height: 1.2;
+}
+
+/* Price styling */
+.course-price {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #27ae60; /* Green color for price */
+  margin-bottom: 10px;
+}
+
+/* Category styling */
+.course-category {
+  font-size: 0.9rem;
+  color: #7f8c8d; /* Light gray for category */
+  margin-bottom: 10px;
+  text-transform: capitalize;
+}
+
+/* Ratings section */
+.course-ratings {
+  font-size: 0.9rem;
+  color: #f39c12; /* Gold color for rating */
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+/* See More button styling */
+.seemore-btn {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content; /* Center the button */
+}
+
+/* Hover effect for the See More button */
+.seemore-btn:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+/* Footer Styling */
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: var(--primary-dark);
+  color: white;
+  width: 100%;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+  margin: 0;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 1024px) {
+  #course-list {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust card size for tablets */
+    padding: 15px;
+  }
+
+  .course-info h3 {
+    font-size: 1.1rem;
+  }
+
+  .course-price {
+    font-size: 0.9rem;
+  }
+
+  .course-category {
+    font-size: 0.8rem;
+  }
+
+  .course-ratings {
+    font-size: 0.8rem;
+  }
+
+  .seemore-btn {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+
+/* Mobile (Small screens up to 768px) */
+@media (max-width: 768px) {
+  #course-list {
+    grid-template-columns: 60%; /* Stacked layout on mobile */
+    gap: 20px;
+    padding: 10px;
+    justify-content: center;
+  }
+
+  .course-card {
+    height: auto; /* Let cards adjust their height based on content */
+    padding: 5px;
+  }
+
+  .course-info h3 {
+    font-size: 1rem;
+  }
+
+  .course-price {
+    font-size: 0.8rem;
+  }
+
+  .course-category {
+    font-size: 0.75rem;
+  }
+
+  .course-ratings {
+    font-size: 0.75rem;
+  }
+
+  .seemore-btn {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+@media (max-width: 1024px) {
+  #course-list {
+    grid-template-columns: 95%; /* Stacked layout on mobile */
+  }
+}
+
+/* Footer Styling adjustments for mobile */
+@media (max-width: 768px) {
+  footer {
+    padding: 15px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Enrolled Courses section */
+.enrolled-courses {
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  color: white;
+}
+
+
+/* General Dark Mode Styles */
+body[data-theme="dark"] {
+  background-color: var(--dark-background);
+  color: var(--text-color);
+}
+
+/* Navbar Dark Mode */
+body[data-theme="dark"] .navbar {
+  background: linear-gradient(90deg, var(--primary-dark), var(--primary-color));
+}
+
+body[data-theme="dark"] .nav-links .link {
+  color: white;
+}
+
+body[data-theme="dark"] .btn-login,
+body[data-theme="dark"] #logout-btn {
+  background: var(--primary-dark);
+  color: white;
+}
+
+body[data-theme="dark"] .btn-login:hover,
+body[data-theme="dark"] #logout-btn:hover {
+  background: var(--button-hover);
+  color: var(--text-color);
+}
+
+/* Course Cards Dark Mode */
+body[data-theme="dark"] .course-card {
+  background-color: var(--dark-background);
+  color: white;
+}
+
+body[data-theme="dark"] .course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px var(--shadow-dark);
+}
+
+body[data-theme="dark"] .course-info {
+  background-color: #444;
+}
+
+body[data-theme="dark"] .course-title,
+body[data-theme="dark"] .course-category {
+  color: #ccc;
+}
+
+/* Footer Dark Mode */
+body[data-theme="dark"] footer {
+  background-color: var(--primary-dark);
+}
+
+body[data-theme="dark"] footer p {
+  color: #ccc;
+}
+
+/* See More Button in Dark Mode */
+body[data-theme="dark"] .seemore-btn {
+  background-color: #2980b9;
+}
+
+body[data-theme="dark"] .seemore-btn:hover {
+  background-color: #3498db;
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+  background-color: #121212;
+  color: white;
+}
+
+.dark-mode .navbar {
+  background-color: #333;
+}
+
+.dark-mode .course-card {
+  background-color: #444;
+}
+
+/* Example: Dark Mode Button Icon */
+.dark-mode .seemore-btn {
+  background-color: #2980b9;
+}

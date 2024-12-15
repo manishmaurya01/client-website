@@ -6,6 +6,8 @@
   <title>Courses Page</title>
   <link rel="stylesheet" href="couses.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
   <link rel="stylesheet" href="responsive.css">
  
 </head>
@@ -22,6 +24,7 @@
           <li><a href="courses.html" class="link">Courses</a></li>
           <li><a href="#about" class="link">About</a></li>
           <li><a href="#testimonials" class="link">Testimonials</a></li>
+          <li><a href="enrolled-courses.html" class="link">Enrolled Courses</a></li>
           <li><a href="contactus.html" class="link">Contact</a></li>
           <!-- Login/SignUp button -->
           <li><button class="btn-login"><a href="Auth.html" class="signupbtn" id="login-signup-btn">Login/Sign Up</a></button></li>
@@ -39,31 +42,35 @@
     </div>
   </header>
 
-
+  <div class="courses-con">
   <!-- Search and Filters -->
-  <section class="search-filter-section">
-    <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Search for courses..." />
-      <button id="searchBtn" class="btn btn-primary"><i class="fas fa-search"></i></button>
-    </div>
-    <div class="filters">
-      
-      <label for="category">Category:</label>
-      <select id="category" class="select">
-        <option value="all">All</option>
-        <option value="programming">Programming</option>
-        <option value="design">Design</option>
-        <option value="marketing">Marketing</option>
-        <option value="business">Business</option>
-      </select>
-      <label for="price">Price:</label>
-      <select id="price" class="select">
-        <option value="all">All</option>
-        <option value="free">Free</option>
-        <option value="paid">Paid</option>
-      </select>
-    </div>
-  </section>
+<section class="search-filter-section">
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search for courses..." />
+    <button id="searchBtn" class="btn btn-primary"><i class="fas fa-search"></i></button>
+  </div>
+  <div class="filters">
+    <label for="category">Category:</label>
+    <select id="category" class="select">
+      <option value="all">All</option>
+      <option value="programming">Programming</option>
+      <option value="design">Design</option>
+      <option value="marketing">Marketing</option>
+      <option value="business">Business</option>
+    </select>
+
+    <label for="price">Price:</label>
+    <select id="price" class="select">
+      <option value="all">All</option>
+      <option value="free">Free</option>
+      <option value="paid">Paid</option>
+      <option value="less-than-2000">Less than 2000</option>
+      <option value="less-than-5000">Less than 5000</option>
+      <option value="less-than-10000">Less than 10000</option>
+      <option value="above-10000">Above 10000</option>
+    </select>
+  </div>
+</section>
 
   <!-- Courses -->
   <section id="courses">
@@ -77,6 +84,33 @@
       </div>
     </div>
   </section>
+</div>
+
+<div class="booking-container">
+  <div class="course-details">
+    <div class="course-content">
+      <!-- Thumbnail Section -->
+      <div class="thumbnail-container">
+        <img src="https://codethedream.org/wp-content/uploads/2023/12/Intro-to-Programming-1024x1024.png" alt="Course Image">
+      </div>
+
+      <!-- Course Details Section -->
+      <div class="course-info">
+        <h2>Introduction to Programming</h2>
+        <p><strong>Instructor:</strong> John Doe</p>
+        <p><strong>Duration:</strong> 3 weeks</p>
+        <p><strong>Category:</strong> Programming</p>
+        <p><strong>Description:</strong> Learn the basics of programming with this beginner-friendly course.</p>
+      </div>
+
+      <!-- Booking Section -->
+      <div class="booking-section">
+        <p>Ready to join this course? Book your spot now!</p>
+        <button class="btn-primary">Book Now</button>
+      </div>
+    </div>
+  </div>
+</div>
 
   <script type="module" src="courses.js"></script>
 </body>

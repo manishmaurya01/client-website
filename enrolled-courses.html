@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enrolled Courses</title>
+  <link rel="stylesheet" href="enrolled-courses.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <!-- Add any external CSS or frameworks you use -->
+</head>
+<body>
+ <!-- Navbar -->
+<header class="navbar">
+    <div class="nav_container">
+      <div class="logo_container">
+        <h1 class="logo">📘 Learn and Earn Infinite LLP</h1>    
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#home" class="link">Home</a></li>
+          <li><a href="courses.html" class="link">Courses</a></li>
+          <li><a href="#about" class="link">About</a></li>
+          <li><a href="#testimonials" class="link">Testimonials</a></li>
+          <li><a href="enrolled-courses.html" class="link">Enrolled Courses</a></li>
+          <li><a href="contactus.html" class="link">Contact</a></li>
+          <!-- Login/SignUp button -->
+          <li><button class="btn-login"><a href="Auth.html" class="signupbtn" id="login-signup-btn">Login/Sign Up</a></button></li>
+          <!-- Logout button -->
+          <li><button class="btn-logout" id="logout-btn" style="display:none;">Logout</button></li>
+          <li><button class="btn-darkmode" id="darkModeToggle"><i class="fas fa-moon"></i></button></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </div>
+  </header>
+  
+  <div class="enrolled-courses">
+    
+    <div id="course-list"></div>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 Learn & Earn</p>
+  </footer>
+
+  <script type="module" src="current-enrolled-courses.js"></script>
+</body>
+</html>

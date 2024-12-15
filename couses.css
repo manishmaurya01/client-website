@@ -56,6 +56,7 @@
     width: 100%;
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
 .logo {
@@ -63,6 +64,7 @@
     font-weight: bold;
     margin-right: auto;
 }
+
 
 .nav-links {
     list-style: none;
@@ -325,6 +327,7 @@
     
     .hamburger {
         display: flex;
+        
     }
 
     .hamburger.active span:nth-child(1) {
@@ -357,13 +360,15 @@
       width: 30px;
       height: 25px;
       cursor: pointer;
+      padding-top: 30px;
     }
-  
+
     .hamburger span {
       display: block;
       height: 3px;
       background: white;
       border-radius: 2px;
+     
     }
   
     .nav-links {
@@ -445,6 +450,7 @@
       font-size: 2rem;
       color: white;
       cursor: pointer;
+      
     }
   
     .courses-container {
@@ -467,24 +473,6 @@
   }
 
 
-  /* Dark Mode Styles */
-body[data-theme="dark"] {
-  --primary-color: #1b5e20;
-  --primary-dark: #004d40;
-  --secondary-color: #424242;
-  --text-color: #e0e0e0;
-  --light-background: #121212;
-  --dark-background: #000000;
-  --gray-text: #aaaaaa;
-  --border-radius: 8px;
-  --shadow-light: rgba(255, 255, 255, 0.1);
-  --shadow-dark: rgba(255, 255, 255, 0.2);
-  --button-hover: #616161;
-  --button-hover-dark: #004d40;
-  --card-background: #1e1e1e;
-  --card-hover-background: #2e2e2e;
-  --card-shadow: rgba(255, 255, 255, 0.1);
-}
 
 /* Adjustments for Elements in Dark Mode */
 body[data-theme="dark"] .navbar {
@@ -555,3 +543,239 @@ body[data-theme="dark"] .course-card h3 {
 body[data-theme="dark"] .course-card p {
   color: var(--gray-text);
 }
+
+
+.booking-container{
+  display: none;
+  
+}
+
+/* Global Styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+body.dark-mode {
+  background-color: #181818;
+  color: #e0e0e0;
+}
+
+/* Course Details Layout */
+.course-details {
+  width: 100%;
+  padding: 40px;
+  background-color: #fff;
+  margin-top: 20px;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+body.dark-mode .course-details {
+  background-color: #333;
+  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.1);
+}
+
+/* Course Content */
+.course-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 90%;
+  gap: 20px;
+  padding: 20px;
+}
+
+.thumbnail-container {
+  flex: 1;
+  max-width: 70%;
+  height: auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.thumbnail-container img {
+  width: 90%;
+  height: auto;
+  border-radius: 20px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.thumbnail-container img:hover {
+  transform: scale(1.05);
+}
+
+/* Course Info */
+.course-infoo {
+  /* flex: 1.5; */
+  width: 40%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .course-info {
+  background-color: #444;
+  box-shadow: 0 6px 15px rgba(255, 255, 255, 0.1);
+}
+
+.course-info h2 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: #222;
+}
+
+body.dark-mode .course-info h2 {
+  color: #e0e0e0;
+}
+
+.course-meta p {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+body.dark-mode .course-meta p {
+  color: #ccc;
+}
+
+.rating .star {
+  color: #f4c542;
+  font-size: 1.5rem;
+}
+
+body.dark-mode .rating .star {
+  color: #bb86fc;
+}
+
+/* Book Now Button */
+.btn-primary {
+  background-color: #6200ea;
+  color: white;
+  padding: 12px 25px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 20px;
+}
+
+.btn-primary:hover {
+  background-color: #3700b3;
+  transform: translateY(-2px);
+}
+
+body.dark-mode .btn-primary {
+  background-color: #bb86fc;
+}
+
+body.dark-mode .btn-primary:hover {
+  background-color: #3700b3;
+}
+
+/* Course Description */
+.course-description {
+  margin-top: 40px;
+}
+
+.course-description h3 {
+  font-size: 2rem;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+body.dark-mode .course-description h3 {
+  color: #e0e0e0;
+}
+
+.course-description p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #555;
+}
+
+body.dark-mode .course-description p {
+  color: #ccc;
+}
+
+/* Optional Additional Section */
+.additional-info {
+  width: 100%;
+  max-width: 1200px;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+body.dark-mode .additional-info {
+  background-color: #444;
+  box-shadow: 0 6px 30px rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .course-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .thumbnail-container {
+    width: 100%;
+    height: auto;
+  }
+
+  .course-info {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .course-info h2 {
+    font-size: 2rem;
+  }
+
+  .course-meta p {
+    font-size: 1rem;
+  }
+
+  .course-description p {
+    font-size: 1rem;
+  }
+
+  .btn-primary {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .course-info h2 {
+    font-size: 1.8rem;
+  }
+
+  .course-description p {
+    font-size: 1rem;
+  }
+
+  .btn-primary {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+}
+
+
+
