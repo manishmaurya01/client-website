@@ -329,6 +329,10 @@
         display: flex;
       
     }
+    #hamburger{
+      padding: 0.5px;
+    }
+   
 
     .hamburger.active span:nth-child(1) {
         transform: translateY(7px) rotate(45deg);
@@ -424,6 +428,8 @@
       
   
   }
+
+  
   
   @media (max-width: 520px) {
     .navbar {
