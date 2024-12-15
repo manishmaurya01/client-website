@@ -327,7 +327,7 @@
     
     .hamburger {
         display: flex;
-        
+      
     }
 
     .hamburger.active span:nth-child(1) {

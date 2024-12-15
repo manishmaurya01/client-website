@@ -325,11 +325,7 @@ if (localStorage.getItem("user")) {
   logoutBtn.style.display = "none";
 }
 
-// // Go Back Button Logic
-// document.querySelector("#goBackBtn").addEventListener("click", () => {
-//   document.querySelector(".booking-container").style.display = "none";
-//   document.querySelector(".courses-con").style.display = "block";
-// });
+
 
 
 async function renderSelectedCourseDetails() {
@@ -378,7 +374,7 @@ async function renderSelectedCourseDetails() {
               </div>
 
               <!-- Book Now Button -->
-              <button class="btn btn-primary">Book Now</button>
+              <button class="btn btn-primary" id="booking">Book Now</button>
 
               <!-- Course Description -->
               <div class="course-description">
@@ -402,6 +398,31 @@ async function renderSelectedCourseDetails() {
         document.querySelector(".courses-con").style.display = "block";
       });
 
+      
+// Add event listener for "Book Now" button
+document.getElementById('booking').addEventListener('click', async () => {
+  if (!window.loggedInUser) {
+    alert('You must be logged in to enroll in a course!');
+    return;
+  }
+
+  const userRef = doc(db, 'users', window.loggedInUser.uid); // Assuming user data is stored in Firestore under "users" collection
+  const courseRef = doc(db, 'courses', selectedCourseId);
+
+  try {
+    // Update the user's enrolled courses in Firestore
+    await updateDoc(userRef, {
+      enrolledCourses: arrayUnion(courseRef)
+    });
+    alert('You have successfully enrolled in this course!');
+  } catch (error) {
+    console.error("Error enrolling in course:", error);
+    alert('Failed to enroll. Please try again later.');
+  }
+});
+
+
+
       // Show the booking container and hide the courses container
       document.querySelector(".courses-con").style.display = "none";
       document.querySelector(".booking-container").style.display = "block";
@@ -412,11 +433,7 @@ async function renderSelectedCourseDetails() {
     console.error("Error fetching course details:", error);
   }
 }
-   // Add event listener for Go Back button
-   document.querySelector("#goBackBtn").addEventListener("click", () => {
-    document.querySelector(".booking-container").style.display = "none";
-    document.querySelector(".courses-con").style.display = "block";
-  });
+ 
 
 // Helper function to generate star rating
 function generateRatingStars(rating) {
@@ -460,37 +477,3 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-// Book Now Button Logic
-document.querySelector(".booking-container").addEventListener("click", async (e) => {
-  if (e.target && e.target.classList.contains("btn-primary")) {
-    const selectedCourseId = localStorage.getItem("selectedCourseId");
-
-    if (!selectedCourseId) {
-      console.error("No course selected.");
-      return;
-    }
-
-    // Check if user is logged in
-    if (!window.loggedInUser) {
-      // Redirect to the authentication page if the user is not logged in
-      window.location.href = "auth.html";
-      return;
-    }
-
-    // Get the course reference from Firestore
-    const courseRef = doc(db, "courses", selectedCourseId);
-
-    try {
-      // Update the course document by adding the user's email to enrolled-users array
-      await updateDoc(courseRef, {
-        "enrolled-users": arrayUnion(window.loggedInUser.email),
-      });
-
-      console.log("User successfully enrolled in the course!");
-
-      // Optionally, you can show a success message or update UI
-    } catch (error) {
-      console.error("Error updating enrolled-users:", error);
-    }
-  }
-});
