@@ -386,7 +386,15 @@ async function renderSelectedCourseDetails() {
 
           <!-- Optional Additional Section -->
           <div class="additional-info">
-            <p>Additional information or features can go here!</p>
+                <!-- Display "modules" field (List of Modules) -->
+              ${course.modules && course.modules.length > 0 ? `
+                <div class="course-modules">
+                  <h3>Modules:</h3>
+                  <ul>
+                    ${course.modules.map(module => `<li>${module}</li>`).join('')}
+                  </ul>
+                </div>
+              ` : ''}
           </div>
         </div>
       `;
