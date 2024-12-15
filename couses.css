@@ -733,14 +733,18 @@ body.dark-mode .additional-info {
   .course-content {
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    padding: 0;
+    max-width: 100%;
   }
   
   .thumbnail-container {
+    max-width: 100%;
     width: 100%;
     height: auto;
   }
 
-  .course-info {
+  .course-infoo {
     width: 100%;
     padding: 20px;
   }
