@@ -398,29 +398,27 @@ async function renderSelectedCourseDetails() {
         document.querySelector(".courses-con").style.display = "block";
       });
 
+      document.getElementById('booking').addEventListener('click', async () => {
+        if (!window.loggedInUser) {
+          alert('You must be logged in to enroll in a course!');
+          return;
+        }
       
-// Add event listener for "Book Now" button
-document.getElementById('booking').addEventListener('click', async () => {
-  if (!window.loggedInUser) {
-    alert('You must be logged in to enroll in a course!');
-    return;
-  }
-
-  const userRef = doc(db, 'users', window.loggedInUser.uid); // Assuming user data is stored in Firestore under "users" collection
-  const courseRef = doc(db, 'courses', selectedCourseId);
-
-  try {
-    // Update the user's enrolled courses in Firestore
-    await updateDoc(userRef, {
-      enrolledCourses: arrayUnion(courseRef)
-    });
-    alert('You have successfully enrolled in this course!');
-  } catch (error) {
-    console.error("Error enrolling in course:", error);
-    alert('Failed to enroll. Please try again later.');
-  }
-});
-
+        const courseRef = doc(db, 'courses', selectedCourseId); // Reference to the selected course
+        const userEmail = window.loggedInUser.email; // Get the logged-in user's email
+      
+        try {
+          // Add the user's email to the "enrolled-users" field in the course document
+          await updateDoc(courseRef, {
+            'enrolled-users': arrayUnion(userEmail)
+          });
+          alert('You have successfully enrolled in this course!');
+        } catch (error) {
+          console.error("Error enrolling in course:", error);
+          alert('Failed to enroll. Please try again later.');
+        }
+      });
+      
 
 
       // Show the booking container and hide the courses container
