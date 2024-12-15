@@ -397,6 +397,7 @@ async function renderSelectedCourseDetails() {
 
       // Add event listener for Go Back button
       document.querySelector("#goBackBtn").addEventListener("click", () => {
+        
         document.querySelector(".booking-container").style.display = "none";
         document.querySelector(".courses-con").style.display = "block";
       });
@@ -411,6 +412,11 @@ async function renderSelectedCourseDetails() {
     console.error("Error fetching course details:", error);
   }
 }
+   // Add event listener for Go Back button
+   document.querySelector("#goBackBtn").addEventListener("click", () => {
+    document.querySelector(".booking-container").style.display = "none";
+    document.querySelector(".courses-con").style.display = "block";
+  });
 
 // Helper function to generate star rating
 function generateRatingStars(rating) {
