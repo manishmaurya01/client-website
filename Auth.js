@@ -2,6 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+import { getRedirectResult } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -25,6 +26,7 @@ const signupForm = document.getElementById("signup-form");
 const loginTab = document.getElementById("login-tab");
 const signupTab = document.getElementById("signup-tab");
 const googleLoginBtn = document.getElementById("google-login-btn");
+const googlesignupBtn = document.getElementById("google-signup-btn");
 
 // Check if the user is already logged in and redirect them to the index page
 onAuthStateChanged(auth, (user) => {
@@ -65,6 +67,29 @@ passwordToggles.forEach(toggle => {
 // Google Login
 const provider = new GoogleAuthProvider();
 
+googlesignupBtn.addEventListener("click", () => {
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      const user = result.user;
+      // alert("Google login successful! Welcome, " + user.displayName);
+
+      // Store user details in localStorage
+      localStorage.setItem('user', JSON.stringify({
+        email: user.email,
+        uid: user.uid,
+        displayName: user.displayName,
+        role: "student" // Default role, you can modify this logic as per your need
+      }));
+
+      // Redirect to index.html after Google login
+      window.location.href = "index.html"; // Redirect to the home page
+    })
+    .catch((error) => {
+      const errorMessage = error.message;
+      alert("Error during Google login: " + errorMessage);
+    });
+});
+
 googleLoginBtn.addEventListener("click", () => {
   signInWithPopup(auth, provider)
     .then((result) => {
@@ -87,38 +112,33 @@ googleLoginBtn.addEventListener("click", () => {
       alert("Error during Google login: " + errorMessage);
     });
 });
-signOut(auth).then(() => {
-  console.log('User signed out.');
-  window.location.href = "auth.html"; // Redirect to the auth page after sign-out
-}).catch((error) => {
-  const errorMessage = error.message;
-  alert("Error during sign out: " + errorMessage);
-});
+// signOut(auth).then(() => {
+//   console.log('User signed out.');
+//   window.location.href = "auth.html"; // Redirect to the auth page after sign-out
+// }).catch((error) => {
+//   const errorMessage = error.message;
+//   alert("Error during sign out: " + errorMessage);
+// });
 
 googleLoginBtn.addEventListener("click", () => {
   signInWithRedirect(auth, provider);
 });
 
-// After the redirect, handle the result:
 getRedirectResult(auth)
   .then((result) => {
     if (result) {
       const user = result.user;
-      // Store user details in localStorage
+      console.log("Google login successful. User:", user);
       localStorage.setItem('user', JSON.stringify({
         email: user.email,
         uid: user.uid,
-        displayName: user.displayName,
-        role: "student" // Default role
+        displayName: user.displayName
       }));
-
-      // Redirect to index.html after Google login
-      window.location.href = "index.html"; // Redirect to the home page
+      window.location.href = "index.html";
     }
   })
   .catch((error) => {
-    const errorMessage = error.message;
-    alert("Error during Google login: " + errorMessage);
+    console.error("Error during Google login redirect:", error.message);
   });
 
   // Check if the user is already logged in
@@ -129,41 +149,46 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
+// Sign-up logic
+const signupButton = document.getElementById("signup-button");
+const loginButton = document.getElementById("login-button");
 
-// Sign-up logic (remains the same)
 signupButton.addEventListener("click", (event) => {
-  const email = document.getElementById("signup-email").value;
-  const password = document.getElementById("signup-password").value;
-  const confirmPassword = document.getElementById("confirm-password").value;
+  event.preventDefault(); // Prevent form submission
+
+  // Fetch user inputs
+  const email = document.getElementById("signup-email").value.trim();
+  const password = document.getElementById("signup-password").value.trim();
+  const confirmPassword = document.getElementById("confirm-password").value.trim();
+
+  // Validate inputs
+  if (!email || !password) {
+    alert("Please fill in all the required fields.");
+    return;
+  }
 
   if (password !== confirmPassword) {
-    event.preventDefault(); // Prevent form submission
     alert("Passwords do not match. Please confirm your password.");
     return;
   }
 
+  // Create user
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      // alert("Sign-up successful! Welcome, " + user.email);
 
       // Store user details in localStorage
       localStorage.setItem('user', JSON.stringify({
         email: user.email,
         uid: user.uid,
-        role: document.getElementById("signup-role").value // Save the selected role
       }));
 
       // Redirect to index.html after sign-up
       window.location.href = "index.html"; // Redirect to the home page
     })
     .catch((error) => {
-      const errorMessage = error.message;
-      // Log the error to the console for debugging purposes
-      console.error("Error details: ", error);
-
-      // Inform the user in a more detailed manner
-      alert("Error during sign-up: " + errorMessage);
+      console.error("Error during sign-up: ", error); // Log error for debugging
+      alert("Error during sign-up: " + error.message); // Inform the user
     });
 });
 
@@ -183,7 +208,7 @@ loginButton.addEventListener("click", (event) => {
       localStorage.setItem('user', JSON.stringify({
         email: user.email,
         uid: user.uid,
-        role: document.getElementById("user-role").value // Save the selected role
+
       }));
 
       // Redirect to index.html after login

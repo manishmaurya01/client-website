@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- FontAwesome for icons -->
+</head>
+<body>
+  <!-- Main Content -->
+   <h1 id="checking-message">wait while checking you are a admin or not</h1>
+  <div id="main-content">
+    <header>
+      <h1 id="welcome-message">Welcome to the Admin Dashboard</h1>
+      <button id="logout-btn">Logout</button>
+    </header>
+
+    <!-- Add Course Button -->
+    <button id="add-course-btn">Add Course</button>
+
+    <!-- Popup for Adding Course -->
+   <!-- Add Course Popup -->
+<div id="add-course-popup" class="popup">
+    <div class="popup-content">
+      <h2>Add New Course</h2>
+      <form id="add-course-form">
+        <input type="text" id="course-title" placeholder="Course Title" required><br>
+        <input type="text" id="course-description" placeholder="Course Description" required><br>
+        <input type="text" id="course-category" placeholder="Course Category" required><br>
+        <input type="number" id="course-price" placeholder="Course Price" required><br>
+        <input type="text" id="course-instructor" placeholder="Instructor Name" required><br>
+        <input type="text" id="course-duration" placeholder="Course Duration" required><br>
+        <input type="text" id="course-difficulty" placeholder="Difficulty Level" required><br>
+        <input type="text" id="course-prerequisites" placeholder="Prerequisites" required><br>
+        <input type="text" id="course-certification" placeholder="Certification" required><br>
+        
+        <textarea id="course-modules" placeholder="Modules (comma-separated)" required></textarea><br>
+        <textarea id="course-tags" placeholder="Tags (comma-separated)" required></textarea><br>
+        <input type="url" id="course-link" placeholder="Course Link" required><br>
+        <input type="url" id="course-image" placeholder="Course Image URL" required><br>
+        
+        <button type="submit">Add Course</button>
+        <button type="button" id="close-popup-btn">Close</button>
+      </form>
+    </div>
+  </div>
+  
+  </div>
+
+  <script type="module" src="dashboard.js"></script>
+</body>
+</html>
